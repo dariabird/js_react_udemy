@@ -10,10 +10,60 @@ let appData = {
     "savings": false,
 };
 
-for (var i = 0; i < 2; i++) {
+for (let i = 0; i < 2; i++) {
     let expenseType = prompt("Введите обязательную статью расходов в этом месяце", ""),
-        expenseValue = +prompt("Во сколько обойдется?", 0);
-    appData.expenses[expenseType] = expenseValue;
+        expenseValue = prompt("Во сколько обойдется?", 0);
+    if ( (typeof(expenseType) != null) && (typeof(expenseValue) != null) 
+        && expenseValue != '' && expenseType != '' 
+        && expenseType.length < 50 ) {
+        appData.expenses[expenseType] = expenseValue;
+    } else {
+        i--;
+    }
 }
 
-alert("Бюджет на один день: " + appData.budget / 30.0);
+// WHILE
+// let i = 0;
+// while (i < 2) {
+//     let expenseType = prompt("Введите обязательную статью расходов в этом месяце", ""),
+//         expenseValue = prompt("Во сколько обойдется?", 0);
+//     if ( (typeof(expenseType) != null) && (typeof(expenseValue) != null) 
+//         && expenseValue != '' && expenseType != '' 
+//         && expenseType.length < 50 ) {
+//         appData.expenses[expenseType] = expenseValue;
+//     } else {
+//         i--;
+//     }
+//     i++;
+// }
+
+
+
+// DO...WHILE
+// let i = 0;
+// do {
+//     let expenseType = prompt("Введите обязательную статью расходов в этом месяце", ""),
+//         expenseValue = prompt("Во сколько обойдется?", 0);
+//     if ( (typeof(expenseType) != null) && (typeof(expenseValue) != null) 
+//         && expenseValue != '' && expenseType != '' 
+//         && expenseType.length < 50 ) {
+//         appData.expenses[expenseType] = expenseValue;
+//     } else {
+//         i--;
+//     }
+//     i++;
+// }
+// while(i < 2);
+
+appData.moneyPerDay = appData.budget / 30.0;
+alert("Бюджет на один день: " + appData.moneyPerDay);
+
+if (appData.moneyPerDay < 100) {
+    console.log("Min");
+} else if (appData.moneyPerDay >= 100 && appData.moneyPerDay < 2000) {
+    console.log("Avg");
+} else if (appData.moneyPerDay >= 2000) {
+    console.log("Max");
+} else {
+    console.log("Error");
+}
